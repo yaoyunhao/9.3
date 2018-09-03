@@ -1,2 +1,13 @@
 @import "_mixin.scss";
 @import "common.scss";
+.wrap {
+    @include num(100%, 100%);
+    @include box_flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+header {
+    @include num(100%, rem(44px));
+    background: red;
+}

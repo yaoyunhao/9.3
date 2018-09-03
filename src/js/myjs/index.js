@@ -1,0 +1,1 @@
+$(function(){$("#ipt").on("input",function(){var n=$(this).val();$.ajax({url:"/api/list?key="+n,dataType:"json",success:function(n){console.log(n)}})})});
