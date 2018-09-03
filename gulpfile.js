@@ -35,25 +35,22 @@ gulp.task('server', function() {
                         return res.end();
                     }
                     var pathname = url.parse(req.url).pathname;
-                    if (pathname == "/api/list") {
-                        var key = url.parse(req.url, true).query.key;
-                        var arr = [];
-                        list.forEach(function(file) {
-                            if (file.title.match(key)) {
-                                arr.push(file);
-                            }
-                        })
-                        res.end(JSON.stringify({ code: 1, msg: arr }));
+                    if (pathname === "/") {
+                        res.end(fs.readFileSync(path.join(__dirname, "src", "index.html")));
                     } else {
-                        console.log(pathname);
-                        pathname = "/" ? "index.html" : pathname;
-                        res.end(fs.readFileSync(path.join(__dirname, 'src', pathname)));
+                        res.end(fs.readFileSync(path.join(__dirname, "src", pathname)))
                     }
-                    // if (pathname == "/") {
-                    //     res.end(fs.readFileSync(__dirname, 'src', 'index.html'));
-                    // } else {
-                    //     res.end(fs.readFileSync(__dirname, 'src', pathname));
-                    // }
+                    if (pathname === "/api/search") {
+                        var key = url.parse(req.url, true).query.key;
+                        // var arr = [];
+                        // list.forEach(function(file) {
+                        //     if (file.title.match(key)) {
+                        //         arr.push(file);
+                        //     }
+                        // })
+                        res.end(JSON.stringify({ code: 1, msg: list }));
+                    }
+
                 }
             }))
 

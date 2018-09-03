@@ -9,5 +9,9 @@
 
 header {
     @include num(100%, rem(44px));
-    background: red;
+    background: #ccc;
+    input {
+        @include num(100%, 80%);
+        border: 1px solid red;
+    }
 }
